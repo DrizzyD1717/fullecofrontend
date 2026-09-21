@@ -4,12 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Product } from "@/types";
+import { useCartStore } from "@/store/useCartStore";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const addToCart = useCartStore((state) => state.addToCart);
   return (
     <motion.div
       whileHover={{ y: -8 }}
@@ -56,6 +58,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <motion.button
             whileTap={{ scale: 0.95 }}
             disabled={product.countInStock === 0}
+            onClick={() => addToCart(product, 1)} // <-- ADD THIS
             className="rounded-full bg-[var(--foreground)] px-4 py-2 text-sm font-bold text-[var(--background)] transition-transform hover:bg-[var(--accent)] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             Add to Cart

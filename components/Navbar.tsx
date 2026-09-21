@@ -5,10 +5,15 @@ import { ShoppingCart, User, Search, Moon, Sun } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { useCartStore } from "@/store/useCartStore";
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const cartItems = useCartStore((state) => state.cartItems);
+
+  // Calculate total items (sum of all quantities)
+  const totalItems = cartItems.reduce((acc, item) => acc + item.qty, 0);
 
   // Prevent hydration mismatch by mounting the theme toggle only on the client
   useEffect(() => {
@@ -77,13 +82,15 @@ export default function Navbar() {
           <Link href="/cart">
             <motion.div
               whileHover={{ y: -2 }}
-              // Updated text colors
               className="relative flex items-center gap-2 text-[var(--foreground)] opacity-70 hover:opacity-100 transition-opacity"
             >
               <ShoppingCart className="h-5 w-5" />
-              <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--accent)] text-[10px] font-bold text-white shadow-sm">
-                3
-              </span>
+              {/* Only show badge if mounted and there are items */}
+              {mounted && totalItems > 0 && (
+                <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--accent)] text-[10px] font-bold text-white shadow-sm">
+                  {totalItems}
+                </span>
+              )}
             </motion.div>
           </Link>
         </div>

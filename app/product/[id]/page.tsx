@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, Check, PackageX } from "lucide-react";
 import { Product } from "@/types";
 import ProductCard from "@/components/ProductCard";
+import AddToCartButton from "@/components/AddToCartButton";
 
 // Fetch the single product
 async function getProduct(id: string): Promise<Product | null> {
@@ -123,12 +124,7 @@ export default async function ProductPage({
           </div>
 
           {/* Add to Cart Action */}
-          <button
-            disabled={product.countInStock === 0}
-            className="flex w-full items-center justify-center rounded-xl bg-[var(--foreground)] px-8 py-4 text-lg font-bold text-[var(--background)] transition-transform hover:scale-[1.02] hover:bg-[var(--accent)] hover:text-white disabled:pointer-events-none disabled:opacity-50"
-          >
-            {product.countInStock > 0 ? "Add to Cart" : "Sold Out"}
-          </button>
+          <AddToCartButton product={product} />
         </div>
       </div>
 
