@@ -53,7 +53,8 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <div className="mt-auto pt-4 flex items-center justify-between">
           <span className="text-xl font-black">
-            ${product.price.toFixed(2)}
+            <span>&#8358;</span>
+            {product.price.toFixed(2)}
           </span>
           <motion.button
             whileTap={{ scale: 0.95 }}

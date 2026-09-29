@@ -166,7 +166,8 @@ export default function PlaceOrderPage() {
                       </span>
                     </div>
                     <span className="font-bold text-[var(--foreground)]">
-                      {item.qty} x ${item.price.toFixed(2)} =$
+                      {item.qty} x <span>&#8358;</span>
+                      {item.price.toFixed(2)} =<span>&#8358;</span>
                       {(item.qty * item.price).toFixed(2)}
                     </span>
                   </li>
@@ -187,7 +188,8 @@ export default function PlaceOrderPage() {
               <div className="flex justify-between">
                 <dt>Items</dt>
                 <dd className="font-bold text-black dark:text-white">
-                  ${itemsPrice.toFixed(2)}
+                  <span>&#8358;</span>
+                  {itemsPrice.toFixed(2)}
                 </dd>
               </div>
               <div className="flex justify-between">
@@ -195,13 +197,14 @@ export default function PlaceOrderPage() {
                 <dd className="font-bold text-black dark:text-white">
                   {shippingPrice === 0
                     ? "Free"
-                    : `$${shippingPrice.toFixed(2)}`}
+                    : `<span>&#8358;</span>${shippingPrice.toFixed(2)}`}
                 </dd>
               </div>
               <div className="flex justify-between">
                 <dt>Tax</dt>
                 <dd className="font-bold text-black dark:text-white">
-                  ${taxPrice.toFixed(2)}
+                  <span>&#8358;</span>
+                  {taxPrice.toFixed(2)}
                 </dd>
               </div>
 
@@ -210,7 +213,8 @@ export default function PlaceOrderPage() {
                   Total
                 </dt>
                 <dd className="text-2xl font-black text-black dark:text-white">
-                  ${totalPrice.toFixed(2)}
+                  <span>&#8358;</span>
+                  {totalPrice.toFixed(2)}
                 </dd>
               </div>
             </dl>

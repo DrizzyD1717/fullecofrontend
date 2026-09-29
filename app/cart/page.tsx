@@ -15,9 +15,12 @@ export default function CartPage() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null; 
+  if (!mounted) return null;
 
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.price * item.qty,
+    0,
+  );
 
   if (cartItems.length === 0) {
     return (
@@ -56,7 +59,13 @@ export default function CartPage() {
             {cartItems.map((item) => (
               <li key={item._id} className="flex py-6 sm:py-8">
                 <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:h-32 sm:w-32">
-                  <Image src={item.image} alt={item.name} fill className="object-cover" sizes="(max-width: 768px) 100px, 150px" />
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100px, 150px"
+                  />
                 </div>
 
                 <div className="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
@@ -64,7 +73,10 @@ export default function CartPage() {
                     <div>
                       <div className="flex justify-between">
                         <h3 className="text-lg font-bold text-[var(--foreground)]">
-                          <Link href={`/product/${item._id}`} className="hover:text-[var(--accent)] transition-colors">
+                          <Link
+                            href={`/product/${item._id}`}
+                            className="hover:text-[var(--accent)] transition-colors"
+                          >
                             {item.name}
                           </Link>
                         </h3>
@@ -73,14 +85,17 @@ export default function CartPage() {
                         {item.category}
                       </p>
                       <p className="mt-1 text-lg font-black text-[var(--foreground)]">
-                        ${item.price.toFixed(2)}
+                        <span>&#8358;</span>
+                        {item.price.toFixed(2)}
                       </p>
                     </div>
 
                     <div className="mt-4 flex items-center sm:mt-0 sm:justify-end">
                       <div className="flex items-center rounded-lg border border-[var(--border)]">
                         <button
-                          onClick={() => updateQuantity(item._id, Math.max(1, item.qty - 1))}
+                          onClick={() =>
+                            updateQuantity(item._id, Math.max(1, item.qty - 1))
+                          }
                           className="p-2 text-zinc-600 dark:text-zinc-400 hover:text-[var(--foreground)] transition-colors"
                         >
                           <Minus className="h-4 w-4" />
@@ -89,7 +104,12 @@ export default function CartPage() {
                           {item.qty}
                         </span>
                         <button
-                          onClick={() => updateQuantity(item._id, Math.min(item.countInStock, item.qty + 1))}
+                          onClick={() =>
+                            updateQuantity(
+                              item._id,
+                              Math.min(item.countInStock, item.qty + 1),
+                            )
+                          }
                           className="p-2 text-zinc-600 dark:text-zinc-400 hover:text-[var(--foreground)] transition-colors disabled:opacity-50"
                           disabled={item.qty >= item.countInStock}
                         >
@@ -112,38 +132,47 @@ export default function CartPage() {
         </div>
 
         <div className="lg:col-span-4">
-  <div className="rounded-2xl border border-[var(--border)] bg-zinc-50 p-6 dark:bg-[#121214] sm:p-8">
-    <h2 className="text-lg font-bold text-black dark:text-white">Order Summary</h2>
-    
-    <dl className="mt-6 space-y-4 text-sm font-medium text-black dark:text-white">
-      <div className="flex items-center justify-between">
-        <dt>Subtotal</dt>
-        <dd className="font-bold text-black dark:text-white">${subtotal.toFixed(2)}</dd>
-      </div>
-      
-      <div className="flex items-center justify-between border-t border-[var(--border)] pt-4">
-        <dt className="text-base font-bold text-black dark:text-white">Order Total</dt>
-        <dd className="text-xl font-black text-black dark:text-white">${subtotal.toFixed(2)}</dd>
-      </div>
-    </dl>
+          <div className="rounded-2xl border border-[var(--border)] bg-zinc-50 p-6 dark:bg-[#121214] sm:p-8">
+            <h2 className="text-lg font-bold text-black dark:text-white">
+              Order Summary
+            </h2>
 
-    <div className="mt-8">
-      <Link href="/checkout">
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-black px-4 py-4 text-base font-bold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-        >
-          Checkout
-          <ArrowRight className="h-4 w-4" />
-        </motion.button>
-      </Link>
-    </div>
-    <div className="mt-4 text-center text-xs font-medium text-black dark:text-white">
-      Taxes and shipping calculated at checkout.
-    </div>
-  </div>
-</div>
+            <dl className="mt-6 space-y-4 text-sm font-medium text-black dark:text-white">
+              <div className="flex items-center justify-between">
+                <dt>Subtotal</dt>
+                <dd className="font-bold text-black dark:text-white">
+                  ${subtotal.toFixed(2)}
+                </dd>
+              </div>
+
+              <div className="flex items-center justify-between border-t border-[var(--border)] pt-4">
+                <dt className="text-base font-bold text-black dark:text-white">
+                  Order Total
+                </dt>
+                <dd className="text-xl font-black text-black dark:text-white">
+                  <span>&#8358;</span>
+                  {subtotal.toFixed(2)}
+                </dd>
+              </div>
+            </dl>
+
+            <div className="mt-8">
+              <Link href="/checkout">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-black px-4 py-4 text-base font-bold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+                >
+                  Checkout
+                  <ArrowRight className="h-4 w-4" />
+                </motion.button>
+              </Link>
+            </div>
+            <div className="mt-4 text-center text-xs font-medium text-black dark:text-white">
+              Taxes and shipping calculated at checkout.
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );

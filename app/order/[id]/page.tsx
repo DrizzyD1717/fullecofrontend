@@ -232,11 +232,13 @@ export default function OrderReceiptPage({
                       {item.name}
                     </Link>
                     <span className="text-sm font-medium text-black dark:text-zinc-400">
-                      Qty: {item.qty} × ${item.price.toFixed(2)}
+                      Qty: {item.qty} × <span>&#8358;</span>
+                      {item.price.toFixed(2)}
                     </span>
                   </div>
                   <span className="font-black text-black dark:text-white">
-                    ${(item.qty * item.price).toFixed(2)}
+                    <span>&#8358;</span>
+                    {(item.qty * item.price).toFixed(2)}
                   </span>
                 </li>
               ))}
@@ -255,7 +257,8 @@ export default function OrderReceiptPage({
               <div className="flex justify-between">
                 <dt>Subtotal</dt>
                 <dd className="font-bold text-black dark:text-white">
-                  ${order.itemsPrice.toFixed(2)}
+                  <span>&#8358;</span>
+                  {order.itemsPrice.toFixed(2)}
                 </dd>
               </div>
               <div className="flex justify-between">
@@ -263,13 +266,14 @@ export default function OrderReceiptPage({
                 <dd className="font-bold text-black dark:text-white">
                   {order.shippingPrice === 0
                     ? "Free"
-                    : `$${order.shippingPrice.toFixed(2)}`}
+                    : `<span>&#8358;</span>${order.shippingPrice.toFixed(2)}`}
                 </dd>
               </div>
               <div className="flex justify-between">
                 <dt>Tax (7.5%)</dt>
                 <dd className="font-bold text-black dark:text-white">
-                  ${order.taxPrice.toFixed(2)}
+                  <span>&#8358;</span>
+                  {order.taxPrice.toFixed(2)}
                 </dd>
               </div>
 
@@ -278,7 +282,8 @@ export default function OrderReceiptPage({
                   Total Paid
                 </dt>
                 <dd className="text-2xl font-black text-black dark:text-white">
-                  ${order.totalPrice.toFixed(2)}
+                  <span>&#8358;</span>
+                  {order.totalPrice.toFixed(2)}
                 </dd>
               </div>
             </dl>
