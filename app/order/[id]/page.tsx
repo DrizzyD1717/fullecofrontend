@@ -232,7 +232,7 @@ export default function OrderReceiptPage({
                       {item.name}
                     </Link>
                     <span className="text-sm font-medium text-black dark:text-zinc-400">
-                      Qty: {item.qty} × <span>&#8358;</span>
+                      Qty: {item.qty} <span>&#8358;</span>
                       {item.price.toFixed(2)}
                     </span>
                   </div>
@@ -264,9 +264,14 @@ export default function OrderReceiptPage({
               <div className="flex justify-between">
                 <dt>Shipping</dt>
                 <dd className="font-bold text-black dark:text-white">
-                  {order.shippingPrice === 0
-                    ? "Free"
-                    : `<span>&#8358;</span>${order.shippingPrice.toFixed(2)}`}
+                  {order.shippingPrice === 0 ? (
+                    "Free"
+                  ) : (
+                    <div>
+                      <span>&#8358;</span>
+                      {order.shippingPrice.toFixed(2)}
+                    </div>
+                  )}
                 </dd>
               </div>
               <div className="flex justify-between">
