@@ -78,7 +78,7 @@ export default function OrderReceiptPage({
     const fetchOrder = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/orders/${id}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/orders/${id}`,
           {
             headers: {
               Authorization: `Bearer ${userInfo.token}`,

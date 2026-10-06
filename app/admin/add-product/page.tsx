@@ -51,7 +51,7 @@ export default function AddProductPage() {
     setLoading(true);
     try {
       await axios.post(
-        "http://localhost:5000/api/products",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/products`,
         {
           name,
           price: Number(price),

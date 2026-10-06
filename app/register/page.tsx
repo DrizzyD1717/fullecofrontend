@@ -33,11 +33,14 @@ export default function RegisterPage() {
 
     setLoading(true);
     try {
-      const { data } = await axios.post("http://localhost:5000/api/users", {
-        name,
-        email,
-        password,
-      });
+      const { data } = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/users`,
+        {
+          name,
+          email,
+          password,
+        },
+      );
       setCredentials(data);
       router.push(redirect);
     } catch (err: any) {

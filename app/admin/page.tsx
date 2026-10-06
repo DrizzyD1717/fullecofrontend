@@ -59,10 +59,10 @@ export default function AdminDashboardPage() {
       setLoading(true);
       try {
         const [ordersRes, productsRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/orders", {
+          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/orders`, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           }),
-          axios.get("http://localhost:5000/api/products"),
+          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/products`),
         ]);
         setOrders(ordersRes.data);
         setProducts(productsRes.data);
@@ -81,7 +81,7 @@ export default function AdminDashboardPage() {
   const handleDeliverOrder = async (orderId: string) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/orders/${orderId}/deliver`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/orders/${orderId}/deliver`,
         {},
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -100,9 +100,12 @@ export default function AdminDashboardPage() {
       return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/products/${productId}`, {
-        headers: { Authorization: `Bearer ${userInfo.token}` },
-      });
+      await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}`,
+        {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        },
+      );
       setProducts((prev) => prev.filter((p) => p._id !== productId));
     } catch (error) {
       console.error("Error deleting product:", error);

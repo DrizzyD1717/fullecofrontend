@@ -56,7 +56,7 @@ export default function ProfilePage() {
     const fetchMyOrders = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/orders/myorders",
+          `${process.env.NEXT_PUBLIC_API_URL}/api/orders/myorders`,
           {
             headers: {
               Authorization: `Bearer ${userInfo.token}`,

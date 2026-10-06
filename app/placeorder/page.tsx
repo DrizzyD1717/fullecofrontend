@@ -99,7 +99,7 @@ export default function PlaceOrderPage() {
       };
 
       const { data } = await axios.post(
-        "http://localhost:5000/api/orders",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/orders`,
         orderData,
         {
           headers: {

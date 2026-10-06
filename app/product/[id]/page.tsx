@@ -8,9 +8,12 @@ import AddToCartButton from "@/components/AddToCartButton";
 // Fetch the single product
 async function getProduct(id: string): Promise<Product | null> {
   try {
-    const res = await fetch(`http://localhost:5000/api/products/${id}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/products/${id}`,
+      {
+        cache: "no-store",
+      },
+    );
     if (!res.ok) return null;
     return res.json();
   } catch (error) {
@@ -24,7 +27,7 @@ async function getSimilarProducts(
   currentId: string,
 ): Promise<Product[]> {
   try {
-    const res = await fetch(`http://localhost:5000/api/products`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`, {
       cache: "no-store",
     });
     if (!res.ok) return [];
