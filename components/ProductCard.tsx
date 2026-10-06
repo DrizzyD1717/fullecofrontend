@@ -60,7 +60,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             whileTap={{ scale: 0.95 }}
             disabled={product.countInStock === 0}
             onClick={() => addToCart(product, 1)} // <-- ADD THIS
-            className="rounded-full bg-[var(--foreground)] px-4 py-2 text-sm font-bold text-[var(--background)] transition-transform hover:bg-[var(--accent)] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-full bg-[var(--foreground)] px-4 py-2 text-sm font-bold text-[var(--background)] transition-transform hover:bg-[var(--accent)] hover:text-white disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
           >
             Add to Cart
           </motion.button>

@@ -161,7 +161,7 @@ export default function CartPage() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-black px-4 py-4 text-base font-bold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-black px-4 py-4 text-base font-bold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200 cursor-pointer"
                 >
                   Checkout
                   <ArrowRight className="h-4 w-4" />

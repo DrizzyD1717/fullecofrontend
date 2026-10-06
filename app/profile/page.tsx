@@ -188,7 +188,8 @@ export default function ProfilePage() {
                           {new Date(order.createdAt).toLocaleDateString()}
                         </td>
                         <td className="py-4 px-4 font-black text-black dark:text-white">
-                          ${order.totalPrice.toFixed(2)}
+                          <span>&#8358;</span>
+                          {order.totalPrice.toFixed(2)}
                         </td>
                         <td className="py-4 px-4">
                           {order.isPaid ? (

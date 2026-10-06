@@ -117,7 +117,7 @@ export default function CheckoutPage() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full rounded-xl bg-[var(--foreground)] px-8 py-4 text-lg font-bold text-[var(--background)] transition-colors hover:bg-[var(--accent)] hover:text-white"
+                className="w-full rounded-xl bg-[var(--foreground)] px-8 py-4 text-lg font-bold text-[var(--background)] transition-colors hover:bg-[var(--accent)] hover:text-white cursor-pointer"
               >
                 Proceed to Payment
               </motion.button>

@@ -225,7 +225,7 @@ export default function PlaceOrderPage() {
                 whileTap={{ scale: 0.98 }}
                 onClick={() => initializePayment({ onSuccess, onClose })}
                 disabled={isProcessing}
-                className="w-full rounded-xl bg-black dark:bg-white px-8 py-4 text-lg font-bold text-white dark:text-black transition-colors hover:bg-[var(--accent)] hover:text-white disabled:opacity-50"
+                className="w-full rounded-xl bg-black dark:bg-white px-8 py-4 text-lg font-bold text-white dark:text-black transition-colors hover:bg-[var(--accent)] hover:text-white disabled:opacity-50 cursor-pointer"
               >
                 {isProcessing ? "Processing..." : "Place Order"}
               </motion.button>
