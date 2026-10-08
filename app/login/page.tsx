@@ -8,7 +8,6 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { useAuthStore } from "@/store/useAuthStore";
 
-// 1. Rename your main component to LoginForm (or LoginContent)
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -108,12 +107,15 @@ function LoginForm() {
   );
 }
 
-// 2. Export a default component that wraps the LoginForm in Suspense
 export default function LoginPage() {
   return (
     <main className="mx-auto flex min-h-[80vh] max-w-md flex-col justify-center px-4 py-12">
       <Suspense
-        fallback={<div className="text-center font-bold">Loading...</div>}
+        fallback={
+          <div className="text-center font-bold text-zinc-500">
+            Loading login...
+          </div>
+        }
       >
         <LoginForm />
       </Suspense>
